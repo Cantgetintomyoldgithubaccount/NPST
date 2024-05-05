@@ -24,3 +24,13 @@ install-pip-deps:
           run: pip install -r requirements.txt
           shell: cmd
           working-directory: python-greetings
+
+    deploy-to-dev:
+      name: Deploy Dev
+      runs-on: self-hosted
+      needs: install-pip-deps
+      steps:
+        - uses: ./../hello-world/.github/actions/deploy
+          with:
+            port: 7001
+            enviroment: 'dev'
