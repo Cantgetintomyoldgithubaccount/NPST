@@ -30,7 +30,7 @@ install-pip-deps:
       runs-on: self-hosted
       needs: install-pip-deps
       steps:
-        - uses: ./../hello-world/.github/actions/deploy
+        - uses: ./../NPST/.github/actions/deploy
           with:
             port: 7001
             enviroment: 'dev'
@@ -40,6 +40,25 @@ install-pip-deps:
       runs-on: self-hosted
       needs: deploy-to-dev
       steps:
-        - uses: ./../hello-world/.github/actions/tests
+        - uses: ./../NPST/.github/actions/tests
           with:
             enviroment: 'dev'
+
+    deploy-to-stg:
+      name: Deploy Staging
+      runs-on: self-hosted
+      needs: tests-on-dev
+      steps:
+        - uses: ./../NPST/.github/actions/deploy
+          with:
+            port: 7002
+            enviroment: 'stg'
+            
+    tests-on-stg:
+      name: Test Staging
+      runs-on: self-hosted
+      needs: deploy-to-stg
+      steps:
+        - uses: ./../hello-world/.github/actions/tests
+          with:
+            enviroment: 'stg'
