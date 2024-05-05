@@ -3,17 +3,13 @@ on:
   push:
     branches:
       - main
-  
   workflow_dispatch:
-
 jobs:
-
   install-pip-deps:
     runs-on: self-hosted
     steps:
       - name: Check out repository
         uses: actions/checkout@v3.5.2
-        
       - name: Checkout python-greetings repository
         uses: actions/checkout@v3.5.2
         with:
@@ -21,12 +17,10 @@ jobs:
           path: 'python-greetings'
           ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
           fetch-depth: 0
-
       - name: Install Python dependencies
         run: pip install -r requirements.txt
         shell: cmd
         working-directory: python-greetings
-
   deploy-to-dev:
     name: Deploy Dev
     runs-on: self-hosted
@@ -36,7 +30,6 @@ jobs:
         with:
           port: 7001
           enviroment: 'dev'
-
   tests-on-dev:
     name: Test Dev
     runs-on: self-hosted
@@ -44,8 +37,7 @@ jobs:
     steps:
       - uses: ./../hello-world/.github/actions/tests
         with:
-          enviroment: 'dev'
-  
+          enviroment: 'dev'  
   deploy-to-stg:
     name: Deploy Staging
     runs-on: self-hosted
@@ -55,7 +47,6 @@ jobs:
         with:
           port: 7002
           enviroment: 'stg'
-
   tests-on-stg:
     name: Test Staging
     runs-on: self-hosted
@@ -64,7 +55,6 @@ jobs:
       - uses: ./../hello-world/.github/actions/tests
         with:
           enviroment: 'stg'
-
   deploy-to-preprod:
     name: Deploy PreProd
     runs-on: self-hosted
@@ -74,7 +64,6 @@ jobs:
         with:
           port: 7003
           enviroment: 'preprod'
-
   tests-on-preprod:
     name: Test PreProd
     runs-on: self-hosted
@@ -83,7 +72,6 @@ jobs:
       - uses: ./../hello-world/.github/actions/tests
         with:
           enviroment: 'preprod'
-
   deploy-to-prod:
     name: Deploy Prod
     runs-on: self-hosted
@@ -93,7 +81,6 @@ jobs:
         with:
           port: 7004
           enviroment: 'prod'
-
   tests-on-prod:
     name: Test Prod
     runs-on: self-hosted
