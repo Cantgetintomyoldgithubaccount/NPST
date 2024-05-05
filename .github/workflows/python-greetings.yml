@@ -59,7 +59,7 @@ install-pip-deps:
       runs-on: self-hosted
       needs: deploy-to-stg
       steps:
-        - uses: ./../hello-world/.github/actions/tests
+        - uses: ./../NPST/.github/actions/tests
           with:
             enviroment: 'stg'
 
@@ -68,7 +68,7 @@ install-pip-deps:
         runs-on: self-hosted
         needs: tests-on-stg
         steps:
-          - uses: ./../hello-world/.github/actions/deploy
+          - uses: ./../NPST/.github/actions/deploy
             with:
               port: 7003
               enviroment: 'preprod'
@@ -78,6 +78,25 @@ install-pip-deps:
         runs-on: self-hosted
         needs: deploy-to-preprod
         steps:
-          - uses: ./../hello-world/.github/actions/tests
+          - uses: ./../NPST/.github/actions/tests
             with:
               enviroment: 'preprod'
+
+      deploy-to-prod:
+        name: Deploy Prod
+        runs-on: self-hosted
+        needs: tests-on-preprod
+        steps:
+          - uses: ./../NPST/.github/actions/deploy
+            with:
+              port: 7004
+              enviroment: 'prod'
+    
+      tests-on-prod:
+        name: Test Prod
+        runs-on: self-hosted
+        needs: deploy-to-prod
+        steps:
+          - uses: ./../NPST/.github/actions/tests
+            with:
+              enviroment: 'prod'
