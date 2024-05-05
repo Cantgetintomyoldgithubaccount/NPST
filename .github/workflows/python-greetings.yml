@@ -20,17 +20,17 @@ jobs:
           ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
           fetch-depth: 0
   
-     - name: Install Python dependencies
-       run: pip install -r requirements.txt
-       shell: cmd
-       working-directory: python-greetings
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+        shell: cmd
+        working-directory: python-greetings
   
   deploy-to-dev:
     name: Deploy Dev
     runs-on: self-hosted
     needs: install-pip-deps
     steps:
-     - uses: ./../NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           port: 7001
           enviroment: 'dev'
@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: ./../NPST/.github/actions/tests
         with:
-        enviroment: 'dev'
+          enviroment: 'dev'
   
   deploy-to-stg:
     name: Deploy Staging
