@@ -11,3 +11,11 @@ install-pip-deps:
       steps:
         - name: Check out repository
           uses: actions/checkout@v3.5.2
+
+        - name: Checkout python-greetings repository
+          uses: actions/checkout@v3.5.2
+          with:
+            repository: 'mtararujs/python-greetings'
+            path: 'python-greetings'
+            ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
+            fetch-depth: 0
