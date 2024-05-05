@@ -25,3 +25,4 @@ runs:
         run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o ${{inputs.port}}
         shell: cmd
         working-directory: python-greetings
+
