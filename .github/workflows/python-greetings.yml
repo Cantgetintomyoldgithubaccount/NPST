@@ -34,3 +34,12 @@ install-pip-deps:
           with:
             port: 7001
             enviroment: 'dev'
+
+    tests-on-dev:
+      name: Test Dev
+      runs-on: self-hosted
+      needs: deploy-to-dev
+      steps:
+        - uses: ./../hello-world/.github/actions/tests
+          with:
+            enviroment: 'dev'
