@@ -62,3 +62,22 @@ install-pip-deps:
         - uses: ./../hello-world/.github/actions/tests
           with:
             enviroment: 'stg'
+
+    deploy-to-preprod:
+        name: Deploy PreProd
+        runs-on: self-hosted
+        needs: tests-on-stg
+        steps:
+          - uses: ./../hello-world/.github/actions/deploy
+            with:
+              port: 7003
+              enviroment: 'preprod'
+    
+      tests-on-preprod:
+        name: Test PreProd
+        runs-on: self-hosted
+        needs: deploy-to-preprod
+        steps:
+          - uses: ./../hello-world/.github/actions/tests
+            with:
+              enviroment: 'preprod'
