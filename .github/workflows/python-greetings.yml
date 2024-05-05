@@ -30,7 +30,7 @@ jobs:
     runs-on: self-hosted
     needs: install-pip-deps
     steps:
-      - uses: ./../NPST/NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           port: 7001
           enviroment: 'dev'
@@ -40,7 +40,7 @@ jobs:
     runs-on: self-hosted
     needs: deploy-to-dev
     steps:
-      - uses: ./../NPST/NPST/.github/actions/tests
+      - uses: ./../NPST/.github/actions/tests
         with:
           enviroment: 'dev'
   
@@ -49,7 +49,7 @@ jobs:
     runs-on: self-hosted
     needs: tests-on-dev
     steps:
-      - uses: ./../NPST/NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           port: 7002
           enviroment: 'stg'
@@ -59,7 +59,7 @@ jobs:
     runs-on: self-hosted
     needs: deploy-to-stg
     steps:
-      - uses: ./../NPST/NPST/.github/actions/tests
+      - uses: ./../NPST/.github/actions/tests
         with:
           enviroment: 'stg'
   
@@ -68,7 +68,7 @@ jobs:
     runs-on: self-hosted
     needs: tests-on-stg
     steps:
-      - uses: ./../NPST/NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           port: 7003
           enviroment: 'preprod'
@@ -78,7 +78,7 @@ jobs:
     runs-on: self-hosted
     needs: deploy-to-preprod
     steps:
-      - uses: ./../NPST/NPST/.github/actions/tests
+      - uses: ./../NPST/.github/actions/tests
         with:
           enviroment: 'preprod'
   
@@ -87,7 +87,7 @@ jobs:
     runs-on: self-hosted
     needs: tests-on-preprod
     steps:
-      - uses: ./../NPST/NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           port: 7004
           enviroment: 'prod'
@@ -97,7 +97,7 @@ jobs:
     runs-on: self-hosted
     needs: deploy-to-prod
     steps:
-      - uses: ./../NPST/NPST/.github/actions/deploy
+      - uses: ./../NPST/.github/actions/deploy
         with:
           enviroment: 'prod'
 
