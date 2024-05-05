@@ -16,12 +16,12 @@ runs:
         ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
         fetch-depth: 0       
       
-  - name: Stop existing service (${{inputs.environment}})
+    - name: Stop existing service (${{inputs.environment}})
       run: pm2 delete greetings-app-${{inputs.environment}} & set "errorlevel=0"
       shell: cmd
       working-directory: python-greetings
       
-  - name: Start service (${{inputs.environment}})
+    - name: Start service (${{inputs.environment}})
         run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o ${{inputs.port}}
         shell: cmd
         working-directory: python-greetings
