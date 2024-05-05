@@ -20,4 +20,3 @@ runs:
       run: npm run greetings greetings_dev
       shell: cmd
       working-directory: course-js-api-framework
-
